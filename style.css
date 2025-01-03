@@ -4,13 +4,13 @@ body {
   padding: 0px;
   margin: 0px;
 
-  background-color: #0f0e17;
+  background-color: rgb(35, 35, 35);
   font-family: 'Courier New', Courier, monospace;
 
   display:flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 #calc-body {
@@ -31,10 +31,10 @@ body {
   background-color: #A8C64E;
   color: #3C412C;
   font-size: 3.3vh;
-  min-height: 6.5vh;
+  height: 6.5vh;
   border: 3px solid black;
   border-radius: 1vh;
-  padding: 0.8vh;
+  padding: 0.2vh 0.8vh;
 
   display: flex;
   align-items: center;
@@ -67,4 +67,12 @@ button {
 
 #equal {
   width: 13vh;
+}
+
+footer {
+  padding: 1vh;
+  background-color: rgb(55, 55, 55);
+  color: rgb(25, 25, 25);
+  width: calc(100vw - 2vh);
+  text-align: center;
 }
