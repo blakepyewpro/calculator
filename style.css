@@ -3,4 +3,68 @@ body {
   height: 100vh;
   padding: 0px;
   margin: 0px;
+
+  background-color: #0f0e17;
+  font-family: 'Courier New', Courier, monospace;
+
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#calc-body {
+  background-color: #fffffe;
+  border: 3px solid black;
+  border-radius: 1vh;
+  padding: 2vh;
+  min-height: 50vh;
+  min-width: 30vh;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+}
+
+#display {
+  background-color: #A8C64E;
+  color: #3C412C;
+  font-size: 3.3vh;
+  min-height: 6.5vh;
+  border: 3px solid black;
+  border-radius: 1vh;
+  padding: 0.8vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.btn-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  background-color: #fffffe;
+  color: black;
+  border: 3px solid black;
+  border-radius: 5vh;
+  width: 5vh;
+  height: 5vh;
+  font-size: 1.6vh;
+  font-weight: 600;
+}
+
+.operator {
+  background-color: #ff8906;
+}
+
+#clear, #delete, #pos-neg {
+  background-color: #f25f4c;
+}
+
+#equal {
+  width: 13vh;
 }
