@@ -14,12 +14,19 @@ btn1.addEventListener("click", () => numberBtnClicked("1"));
 const btn2 = document.querySelector("#two");
 btn2.addEventListener("click", () => numberBtnClicked("2"));
 const btn3 = document.querySelector("#three");
+btn3.addEventListener("click", () => numberBtnClicked("3"));
 const btn4 = document.querySelector("#four");
+btn4.addEventListener("click", () => numberBtnClicked("4"));
 const btn5 = document.querySelector("#five");
+btn5.addEventListener("click", () => numberBtnClicked("5"));
 const btn6 = document.querySelector("#six");
+btn6.addEventListener("click", () => numberBtnClicked("6"));
 const btn7 = document.querySelector("#seven");
+btn7.addEventListener("click", () => numberBtnClicked("7"));
 const btn8 = document.querySelector("#eight");
+btn8.addEventListener("click", () => numberBtnClicked("8"));
 const btn9 = document.querySelector("#nine");
+btn9.addEventListener("click", () => numberBtnClicked("9"));
 
 const clearBtn = document.querySelector("#clear");
 const deleteBtn = document.querySelector("#delete");
@@ -37,7 +44,7 @@ function numberBtnClicked(number) {
             firstBuffer = number;
         } else if (firstBuffer == "-0") {
             firstBuffer = "-" + number;
-        } else {
+        } else if (firstBuffer.length < 14) {
             firstBuffer += number;
         }
         display.textContent = firstBuffer;
@@ -46,7 +53,7 @@ function numberBtnClicked(number) {
             secondBuffer = number;
         } else if (secondBuffer == "-0") {
             secondBuffer = "-" + number;
-        } else {
+        } else if (secondBuffer < 14) {
             secondBuffer += number;
         }
         display.textContent = secondBuffer;
