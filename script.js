@@ -29,7 +29,42 @@ const btn9 = document.querySelector("#nine");
 btn9.addEventListener("click", () => numberBtnClicked("9"));
 
 const clearBtn = document.querySelector("#clear");
+clearBtn.addEventListener("click", () => {
+    firstBuffer = "0";
+    firstBufferDec = false;
+    secondBuffer = "0";
+    secondBufferDec = false;
+    secondBufferActive = false;
+    display.textContent = firstBuffer;
+});
 const deleteBtn = document.querySelector("#delete");
+deleteBtn.addEventListener("click", () => {
+    if (!secondBufferActive) {
+        if (firstBuffer.length == 1) {
+            firstBuffer = "0";
+        } else if (firstBuffer.at(0) == "-" && firstBuffer.length == 2) {
+            firstBuffer = "-0";
+        } else {
+            if (firstBuffer.at(-1) == ".") {
+                firstBufferDec = false;
+            }
+            firstBuffer = firstBuffer.slice(0, firstBuffer.length - 1);
+        }
+        display.textContent = firstBuffer;
+    } else if (secondBufferActive) {
+        if (secondBuffer.length == 1) {
+            secondBuffer = "0";
+        } else if (secondBuffer.at(0) == "-" && secondBuffer.length == 2) {
+            secondBuffer = "-0";
+        } else {
+            if (secondBuffer.at(-1) == ".") {
+                secondBufferDec = false;
+            }
+            secondBuffer = secondBuffer.slice(0, secondBuffer.length - 1);
+        }
+        display.textContent = secondBuffer;
+    }
+});
 const PosNegBtn = document.querySelector("#pos-neg");
 
 const divideBtn = document.querySelector("#divide");
