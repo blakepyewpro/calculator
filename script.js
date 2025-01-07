@@ -66,6 +66,29 @@ deleteBtn.addEventListener("click", () => {
     }
 });
 const PosNegBtn = document.querySelector("#pos-neg");
+PosNegBtn.addEventListener("click", () => {
+    if (!secondBufferActive) {
+        if (firstBuffer.at(0) == "-") {
+            firstBuffer = firstBuffer.slice(1, firstBuffer.length);
+            display.textContent = firstBuffer;
+        } else {
+            if (firstBuffer.length < 14) {
+                firstBuffer = "-" + firstBuffer;
+                display.textContent = firstBuffer;
+            }
+        }
+    } else if (secondBufferActive) {
+        if (secondBuffer.at(0) == "-") {
+            secondBuffer = secondBuffer.slice(1, secondBuffer.length);
+            display.textContent = secondBuffer;
+        } else {
+            if (secondBuffer.length < 14) {
+                secondBuffer = "-" + secondBuffer;
+                display.textContent = secondBuffer;
+            }
+        }
+    }
+});
 
 const divideBtn = document.querySelector("#divide");
 const multiplyBtn = document.querySelector("#multiply");
