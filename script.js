@@ -3,6 +3,7 @@ let firstBufferDec = false;
 let secondBuffer = "0";
 let secondBufferDec = false;
 let secondBufferActive = false;
+let operator = "none";
 
 const display = document.querySelector("#display");
 display.textContent = firstBuffer;
@@ -91,9 +92,13 @@ PosNegBtn.addEventListener("click", () => {
 });
 
 const divideBtn = document.querySelector("#divide");
+divideBtn.addEventListener("click", () => operatorClicked("divide"));
 const multiplyBtn = document.querySelector("#multiply");
+multiplyBtn.addEventListener("click", () => operatorClicked("multiply"));
 const minusBtn = document.querySelector("#minus");
+minusBtn.addEventListener("click", () => operatorClicked("minus"));
 const plusBtn = document.querySelector("#plus");
+plusBtn.addEventListener("click", operatorClicked("plus"));
 const equalBtn = document.querySelector("#equal");
 
 function numberBtnClicked(number) {
@@ -114,6 +119,14 @@ function numberBtnClicked(number) {
         } else if (secondBuffer < 14) {
             secondBuffer += number;
         }
+        display.textContent = secondBuffer;
+    }
+}
+
+function operatorClicked(choice) {
+    if (!secondBufferActive && operator == "none") {
+        secondBufferActive = true;
+        operator = choice;
         display.textContent = secondBuffer;
     }
 }
