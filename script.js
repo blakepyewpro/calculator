@@ -52,6 +52,7 @@ clearBtn.addEventListener("click", () => {
     secondBuffer = "0";
     secondBufferDec = false;
     secondBufferActive = false;
+    operator = "none";
     display.textContent = firstBuffer;
 });
 const deleteBtn = document.querySelector("#delete");
@@ -116,42 +117,7 @@ minusBtn.addEventListener("click", () => operatorClicked("minus"));
 const plusBtn = document.querySelector("#plus");
 plusBtn.addEventListener("click", () => operatorClicked("plus"));
 const equalBtn = document.querySelector("#equal");
-equalBtn.addEventListener("click", () => {
-  if (secondBufferActive && operator != "none") {
-    let result;
-    let resultLen;
-    switch (operator) {
-      case "divide":
-        result = Number(firstBuffer) / Number(secondBuffer);
-        break;
-      case "multiply":
-        result = Number(firstBuffer) * Number(secondBuffer);
-        break;
-      case "minus":
-        result = Number(firstBuffer) - Number(secondBuffer);
-        break;
-      case "plus":
-        result = Number(firstBuffer) + Number(secondBuffer);
-        break;
-    }
-    resultLen = result.toString().length;
-    if (resultLen <= 14) {
-      firstBuffer = result.toString();
-      if (firstBuffer.includes(".")) {
-        firstBufferDec = true;
-      } else firstBufferDec = false;
-      display.textContent = firstBuffer;
-    } else {
-      display.textContent = "OVERFLOW"
-      firstBuffer = "0";
-      firstBufferDec = false;
-    }
-    secondBuffer = "0";
-    secondBufferDec = false;
-    secondBufferActive = false;
-    operator = "none";
-  }
-});
+equalBtn.addEventListener("click", () => compute());
 
 function numberBtnClicked(number) {
     if (!secondBufferActive) {
@@ -179,6 +145,48 @@ function operatorClicked(choice) {
     if (!secondBufferActive && operator == "none") {
         secondBufferActive = true;
         operator = choice;
-        display.textContent = secondBuffer;
+    } else if (secondBufferActive && operator != "none") {
+        compute();
+        if (display.textContent != "OVERFLOW") {
+            secondBufferActive = true;
+            operator = choice;
+        }
     }
+}
+
+function compute() {
+    if (secondBufferActive && operator != "none") {
+        let result;
+        let resultLen;
+        switch (operator) {
+          case "divide":
+            result = Number(firstBuffer) / Number(secondBuffer);
+            break;
+          case "multiply":
+            result = Number(firstBuffer) * Number(secondBuffer);
+            break;
+          case "minus":
+            result = Number(firstBuffer) - Number(secondBuffer);
+            break;
+          case "plus":
+            result = Number(firstBuffer) + Number(secondBuffer);
+            break;
+        }
+        resultLen = result.toString().length;
+        if (resultLen <= 14) {
+          firstBuffer = result.toString();
+          if (firstBuffer.includes(".")) {
+            firstBufferDec = true;
+          } else firstBufferDec = false;
+          display.textContent = firstBuffer;
+        } else {
+          display.textContent = "OVERFLOW"
+          firstBuffer = "0";
+          firstBufferDec = false;
+        }
+        secondBuffer = "0";
+        secondBufferDec = false;
+        secondBufferActive = false;
+        operator = "none";
+      }
 }
