@@ -98,8 +98,44 @@ multiplyBtn.addEventListener("click", () => operatorClicked("multiply"));
 const minusBtn = document.querySelector("#minus");
 minusBtn.addEventListener("click", () => operatorClicked("minus"));
 const plusBtn = document.querySelector("#plus");
-plusBtn.addEventListener("click", operatorClicked("plus"));
+plusBtn.addEventListener("click", () => operatorClicked("plus"));
 const equalBtn = document.querySelector("#equal");
+equalBtn.addEventListener("click", () => {
+  if (secondBufferActive && operator != "none") {
+    let result;
+    let resultLen;
+    switch (operator) {
+      case "divide":
+        result = Number(firstBuffer) / Number(secondBuffer);
+        break;
+      case "multiply":
+        result = Number(firstBuffer) * Number(secondBuffer);
+        break;
+      case "minus":
+        result = Number(firstBuffer) - Number(secondBuffer);
+        break;
+      case "plus":
+        result = Number(firstBuffer) + Number(secondBuffer);
+        break;
+    }
+    resultLen = result.toString().length;
+    if (resultLen <= 14) {
+      firstBuffer = result.toString();
+      if (firstBuffer.includes(".")) {
+        firstBufferDec = true;
+      } else firstBufferDec = false;
+      display.textContent = firstBuffer;
+    } else {
+      display.textContent = "OVERFLOW"
+      firstBuffer = "0";
+      firstBufferDec = false;
+    }
+    secondBuffer = "0";
+    secondBufferDec = false;
+    secondBufferActive = false;
+    operator = "none";
+  }
+});
 
 function numberBtnClicked(number) {
     if (!secondBufferActive) {
@@ -116,7 +152,7 @@ function numberBtnClicked(number) {
             secondBuffer = number;
         } else if (secondBuffer == "-0") {
             secondBuffer = "-" + number;
-        } else if (secondBuffer < 14) {
+        } else if (secondBuffer.length < 14) {
             secondBuffer += number;
         }
         display.textContent = secondBuffer;
