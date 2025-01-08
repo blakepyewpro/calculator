@@ -156,6 +156,15 @@ function operatorClicked(choice) {
 
 function compute() {
     if (secondBufferActive && operator != "none") {
+        if (Number(secondBuffer) == 0 && operator == "divide") {
+            display.textContent = "DON'T DO THAT";
+            firstBuffer = "0";
+            firstBufferDec = false;
+            secondBuffer = "0";
+            secondBufferDec = false;
+            secondBufferActive = false;
+            operator = "none";
+        }
         let result;
         let resultLen;
         switch (operator) {
