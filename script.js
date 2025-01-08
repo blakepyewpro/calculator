@@ -28,6 +28,22 @@ const btn8 = document.querySelector("#eight");
 btn8.addEventListener("click", () => numberBtnClicked("8"));
 const btn9 = document.querySelector("#nine");
 btn9.addEventListener("click", () => numberBtnClicked("9"));
+const dotBtn = document.querySelector("#dot");
+dotBtn.addEventListener("click", () => {
+  if (!secondBufferActive) {
+    if (!firstBufferDec) {
+      firstBuffer += ".";
+      firstBufferDec = true;
+      display.textContent = firstBuffer;
+    }
+  } else if (secondBufferActive) {
+    if (!secondBufferDec) {
+      secondBuffer += ".";
+      secondBufferDec = true;
+      display.textContent = secondBuffer;
+    }
+  }
+});
 
 const clearBtn = document.querySelector("#clear");
 clearBtn.addEventListener("click", () => {
